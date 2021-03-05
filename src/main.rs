@@ -6,12 +6,16 @@ mod cli_utils;
 mod input;
 
 use std::{error::Error, io, process};
+use pager::Pager;
 
 use tokei::{Config, Languages, Sort};
 
 use crate::{cli::Cli, cli_utils::*, input::*};
 
+
 fn main() -> Result<(), Box<dyn Error>> {
+    Pager::new().setup();
+
     let mut cli = Cli::from_args();
 
     if cli.print_languages {
